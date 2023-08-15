@@ -1,0 +1,23 @@
+% Implementing a DDM
+
+%VARIABLES
+
+ter = 0.3;  %non-decision time in seconds (s)
+a = 2.0;    %boundary 
+z = 0.5;    %bias
+k = 1;      %slope (drift rate)
+
+%How can the following effect the model?
+
+% Reward
+% Inter-trial interval
+% Error timeout
+
+%Evidence
+high = 1 + randn(100,1);
+low =  1- randn(100,1);
+
+hold on;
+plot(length(high), high)
+plot(length(high))
+hold off;
