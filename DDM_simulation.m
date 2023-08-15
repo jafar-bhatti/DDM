@@ -1,5 +1,6 @@
 % Implementing a DDM
 a = 20;                                         % boundary
+k = 0.3;                                        % drift rate
 coh = linspace(-.5,.5,10);                      % coherence values (evidence)
 trial_types = length(coh);                      % number of trial types
 num_trials = 1000;                              % number of trials
@@ -10,7 +11,7 @@ responses = zeros(trial_types, num_trials);     % each column is a different tri
 % Collect data (1000 trials) for each coherence value 
 for i = 1:trial_types
     for j = 1:num_trials
-        [dv, cnt, resp] = trial(coh(i), a);
+        [dv, cnt, resp] = trial(coh(i), a, k);
         RT(i,j) = cnt;
         responses(i,j) = resp;
     end
@@ -41,8 +42,7 @@ ylabel('Probability Right')
 set(gcf,'position',[700,200,300,500])
 
 %ACCUMULATE EVIDENCE OVER TIME UNTIL BOUNDARY CROSSED
-function [dv, cnt, resp] = trial(coh, a)
-k = 0.3;
+function [dv, cnt, resp] = trial(coh, a, k)
 dv = [];
 cnt = 1;
 resp = [];
