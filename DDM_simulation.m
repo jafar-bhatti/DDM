@@ -17,6 +17,46 @@ for i = 1:trial_types
     end
 end
 
+% Seperate left and rightward choices
+leftRT = NaN(trial_types, num_trials);
+rightRT = NaN(trial_types, num_trials);
+for i = 1:trial_types
+    leftRT(i, responses(i, :) == -1) = RT(i, responses(i, :) == -1);
+    rightRT(i, responses(i, :) == 1) = RT(i, responses(i, :) == 1);
+end
+
+% Seperate correct and incorrect trials
+correctRT = NaN(trial_types, num_trials);
+errorRT = NaN(trial_types, num_trials);
+for i = 1:trial_types
+    if sign(coh(i)) == -1  
+        correctRT(i, responses(i, :) == -1) = RT(i, responses(i, :) == -1);
+        errorRT(i, responses(i, :) == 1) = RT(i, responses(i, :) == 1);
+    else
+        correctRT(i, responses(i, :) == 1) = RT(i, responses(i, :) == 1);
+        errorRT(i, responses(i, :) == -1) = RT(i, responses(i, :) == -1);
+    end
+end
+
+% Plot left/right and correct/incorrect trials
+meanCorRT = mean(correctRT, 2, 'omitnan');
+meanErRT = mean(errorRT, 2, 'omitnan');
+meanleftRT = mean(leftRT, 2, 'omitnan');
+meanrightRT = mean(rightRT, 2, 'omitnan');
+
+figure
+subplot(1, 2, 1)
+hold on;
+plot(coh, meanCorRT)
+plot(coh, meanErRT)
+legend('Correct', 'Incorrect')
+hold off;
+subplot(1, 2, 2)
+hold on;
+plot(coh, meanleftRT)
+plot(coh, meanrightRT)
+legend('Left trials', 'Right trials')
+
 % Compute reaction time and probabilities from collected data
 meanRT = mean(RT, 2);
 prob_right = sum(responses == 1, 2)/num_trials;
