@@ -16,5 +16,20 @@
 %   makes his decision quicker and therefore sacrifice accuracy. I can also
 %   see cases where the monkey has a lapse in attention and waits until the
 %   last minute before the trial ends (this seems less likely to me, so
-%   maybe the answer is that in real life, the monkey has shorter RT) 
+%   maybe the answer is that in real life, the monkey has shorter RT)
+%
+%08/29
+% - Plot distribution of DV (distributation over time - sample different time points)
+% - distribution of RTs (for a given coherence) 
+% 
+% - Long made a comment about making a 2D matrix that has data from all
+% coherences. She suggesed that the assigned row number be calculated from
+% the coherence value and num_trial, row_num = num_trials * coh; this
+% doesnt make that much sense to me. 1) coherence isnt an integer and
+% 2)this would allow for repeats. I might try 3D matrix or a
+% list of matrices 
+%
+%
+%
+%
 %
