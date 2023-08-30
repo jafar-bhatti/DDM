@@ -65,10 +65,12 @@ end
 
 %Plot RT and resp (all trials)
 meanRT = mean(RT, 'omitnan');
-prob_right = sum(resp == 1, 1)/num_trial;
-figure
+prob_right = sum(resp == 1, 1)./(sum(resp == 1, 1) + sum(resp == -1, 1));
+figure,
 subplot(1,2,1)
 plot(coh, prob_right,'-ko');
+xline(0);
+yline(0.5);
 title('Psychometric performance')
 xlabel('Signed Coherence')
 ylabel('Probability Right')
